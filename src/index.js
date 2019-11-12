@@ -17,7 +17,8 @@ const setup = {
   repos: ':user/repos',
   details: ':user/details',
   headers: {
-    type: 'application/json'
+    type: 'application/json',
+    origin: ['Access-Control-Allow-Origin', '*']
   },
   banner: '\nExpress server on\n',
   favicon: 'public/favicon.ico'
@@ -27,8 +28,6 @@ app.use(favicon(setup.favicon))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static(path.join(setup.path)))
-app.set('Access-Control-Allow-Origin', '*')
-app.set('Access-Control-Allow-Methods', 'GET')
 app.get(setup.api, async (request, response) => {
   let statusCode = request.query.since ? 200 : 400
   let api, data
@@ -39,7 +38,7 @@ app.get(setup.api, async (request, response) => {
   }
   response
     .status(statusCode)
-    .set('Access-Control-Allow-Origin', '*')
+    .set(setup.headers.origin)
     .type(setup.headers.type)
     .json(data || { message: 'Bad request' })
     .end()
@@ -51,7 +50,7 @@ app.get(setup.api + setup.repos, async (request, response) => {
   const code = api.status() ? 200 : 404
   response
     .status(code)
-    .set('Access-Control-Allow-Origin', '*')
+    .set(setup.headers.origin)
     .type(setup.headers.type)
     .json(data)
     .end()
@@ -63,7 +62,7 @@ app.get(setup.api + setup.details, async (request, response) => {
   const code = api.status() ? 200 : 404
   response
     .status(code)
-    .set('Access-Control-Allow-Origin', '*')
+    .set(setup.headers.origin)
     .type(setup.headers.type)
     .json(data)
     .end()
@@ -76,7 +75,7 @@ app.get('/*', (request, response) => {
   }
   response
     .status(error.status)
-    .set('Access-Control-Allow-Origin', '*')
+    .set(setup.headers.origin)
     .type(setup.headers.type)
     .json(error)
     .end()
