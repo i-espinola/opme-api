@@ -68,11 +68,11 @@ app.get(setup.api + setup.details, async (request, response) => {
 
 app.get('/*', (request, response) => {
   const error = {
-    code: 400,
+    status: 400,
     message: 'bad request'
   }
   response
-    .status(error.code)
+    .status(error.status)
     .type(setup.headers.type)
     .json(error)
     .end()
