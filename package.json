@@ -1,18 +1,18 @@
 {
-	"name": "certi",
-	"version": "1.0.0",
-	"description": "Teste tecnico CERTI - Desenvolvedor de software",
+    "name": "opme",
+    "version": "1.0.0",
+    "description": "Teste tecnico OPME - Desenvolvedor Front-end",
 	"private": false,
 	"main": "public/index.js",
 	"author": "Ivan Espinola Gomes <ivan.espinola@live.com>",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/i-espinola/opme.git"
+		"url": "git+https://github.com/i-espinola/opme-api.git"
 	},
 	"bugs": {
-		"url": "https://github.com/i-espinola/opme/issues"
+		"url": "https://github.com/i-espinola/opme-api/issues"
 	},
-	"readme": "https://github.com/i-espinola/opme#readme",
+	"readme": "https://github.com/i-espinola/opme-api#readme",
 	"license": "MIT",
 	"scripts": {
 		"clean": "del public npm-debug.log package-lock.json",
