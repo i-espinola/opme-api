@@ -22,7 +22,7 @@ const setup = {
     type: 'application/json'
   },
   banner: '\nExpress server on\n',
-  favicon: 'favicon.ico'
+  favicon: 'public/favicon.ico'
 }
 
 app.use(favicon(setup.favicon))
