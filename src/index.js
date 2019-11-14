@@ -17,8 +17,8 @@ const setup = {
   repos: ':user/repos',
   details: ':user/details',
   headers: {
-    type: 'application/json',
-    origin: ['Access-Control-Allow-Origin', '*']
+    accept: 'application/json',
+    'Access-Control-Allow-Origin': '*'
   },
   banner: '\nExpress server on\n',
   favicon: 'public/favicon.ico'
@@ -38,8 +38,7 @@ app.get(setup.api, async (request, response) => {
   }
   response
     .status(statusCode)
-    .set(setup.headers.origin)
-    .type(setup.headers.type)
+    .set(setup.headers)
     .json(data || { message: 'Bad request' })
     .end()
 })
@@ -50,8 +49,7 @@ app.get(setup.api + setup.repos, async (request, response) => {
   const code = api.status() ? 200 : 404
   response
     .status(code)
-    .set(setup.headers.origin)
-    .type(setup.headers.type)
+    .set(setup.headers)
     .json(data)
     .end()
 })
@@ -62,8 +60,7 @@ app.get(setup.api + setup.details, async (request, response) => {
   const code = api.status() ? 200 : 404
   response
     .status(code)
-    .set(setup.headers.origin)
-    .type(setup.headers.type)
+    .set(setup.headers)
     .json(data)
     .end()
 })
@@ -75,8 +72,7 @@ app.get('/*', (request, response) => {
   }
   response
     .status(error.status)
-    .set(setup.headers.origin)
-    .type(setup.headers.type)
+    .set(setup.headers)
     .json(error)
     .end()
 })

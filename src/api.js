@@ -20,12 +20,12 @@ export default class ApiGit {
   }
 
   async getList () {
-    const reqList = {
+    const since = {
       params: {
         since: this.input
       }
     }
-    await Axios.get(this.api, reqList).then(response => {
+    await Axios.get(this.api, since).then(response => {
       const next = response.headers.link.replace(/<|>/g, '').replace(/"/g, "'").split(';')
       this.check = true
       this.output = {
